@@ -15,7 +15,7 @@ class Income extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'income_amount',
+        'amount',
         'remarks',
     ];
 

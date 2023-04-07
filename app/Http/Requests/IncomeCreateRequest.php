@@ -22,7 +22,7 @@ class IncomeCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'income_amount' => ['required', 'alpha_num', 'min:100', 'max:1000000'],
+            'amount' => ['required', 'alpha_num', 'min:100', 'max:1000000'],
             'remarks' => ['nullable', 'max:50'],
             'user_id' => ['required', 'exists:App\Models\User,id'],
             'income_categories_id' => ['required', 'exists:App\Models\IncomeCategory,id'],
@@ -36,7 +36,7 @@ class IncomeCreateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'income_amount' => '収入金額',
+            'amount' => '収入金額',
             'remarks' => '備考',
         ];
     }

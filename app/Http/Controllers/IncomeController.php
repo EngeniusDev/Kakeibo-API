@@ -27,7 +27,7 @@ class IncomeController extends Controller
 
         // 取得したincomes（収入金額）を足す
         foreach($incomes as $income){
-            $totalAmount += $income->income_amount;
+            $totalAmount += $income->amount;
         }
         
         return response()->json([

@@ -16,6 +16,6 @@ class IncomePolicy
      */
     public function view(User $user, Income $income)
     {
-        return $user->id == $income->user_id;
+        return $user->id === $income->user_id;
     }
 }

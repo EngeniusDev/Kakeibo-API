@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spents', function (Blueprint $table) {
             $table->id();
-            $table->integer("amount")->default(0)->comment('支出金額');
+            $table->integer('amount')->default(0)->comment('支出金額');
             $table->string('remarks')->comment('備考');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('spent_categories_id')->constrained('spent_categories')->onDelete('cascade');

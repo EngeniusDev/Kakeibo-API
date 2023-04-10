@@ -56,8 +56,6 @@ class IncomeController extends Controller
         return response()->json($income);
     }
 
-
-
     public function update(IncomeUpdateRequest $request, $id)
     {
         $income = Income::findOrFail($id);

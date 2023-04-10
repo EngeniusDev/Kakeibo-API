@@ -11,13 +11,7 @@ class IncomeController extends Controller
 {
     public function index()
     {
-        // $incomes = Income::where('user_id', Auth::user()->id)->get();
-        /* 
-            現段階では、Auth::user()->idはnullの値になります
-            APIテストをする際は下記のコードを使ってください。
-        */
-
-        $incomes = Income::where('user_id', 1)->get();
+        $incomes = Income::where('user_id', Auth::user()->id)->get();
 
         $totalAmount = 0;
 

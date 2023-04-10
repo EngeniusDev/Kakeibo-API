@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Income;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\IncomeCreateRequest;
 
 class IncomeController extends Controller
 {
@@ -36,5 +37,21 @@ class IncomeController extends Controller
         return response()->json([
             'income' => $income
         ]);
+    }
+
+    public function store(IncomeCreateRequest $request)
+    {
+        try {
+            $income = Income::create([
+                'amount' => $request->amount,
+                'remarks' => $request->remarks,
+                'user_id' => Auth::id(),
+                'income_categories_id' => $request->income_categories_id,
+            ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($income);
     }
 }

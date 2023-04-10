@@ -25,4 +25,16 @@ class IncomeController extends Controller
             'totalAmount' => $totalAmount
         ]);
     }
+
+    public function show($id)
+    {
+        $income = Income::findOrFail($id);
+
+        // App\Policies\IncomePolicy
+        $this->authorize('view', $income);
+
+        return response()->json([
+            'income' => $income
+        ]);
+    }
 }

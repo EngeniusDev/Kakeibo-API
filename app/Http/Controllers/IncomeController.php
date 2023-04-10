@@ -11,13 +11,15 @@ class IncomeController extends Controller
 {
     public function index()
     {
-        // $incomes = Income::where('user_id', Auth::user()->id)->get();
+        $incomes = Income::where('user_id', Auth::user()->id)->get();
+
         /* 
             現段階では、Auth::user()->idはnullの値になります
-            APIテストをする際は下記のコードを使ってください。
+            APIテストをする際は上記のコードをコメントアウトして
+            下記のコードのコメントアウトを外してして使ってください。
         */
 
-        $incomes = Income::where('user_id', 1)->get();
+        // $incomes = Income::where('user_id', 1)->get();
 
         $totalAmount = 0;
 
@@ -29,6 +31,23 @@ class IncomeController extends Controller
         return response()->json([
             'incomes' => $incomes,
             'totalAmount' => $totalAmount
+        ]);
+    }
+
+    public function show($id)
+    {
+        $income = Income::findOrFail($id);
+
+        /*
+            ログインユーザーが現在取得出来ないためPolicyは正常に動きません
+            PolicyをコメントアウトするとAPIレスポンスが確認出来ます。 
+         */
+
+        $this->authorize('view', $income);
+
+
+        return response()->json([
+            'income' => $income
         ]);
     }
 }

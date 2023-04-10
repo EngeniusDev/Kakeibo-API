@@ -17,7 +17,7 @@ class SpentFactory extends Factory
     public function definition(): array
     {
         return [
-            'spent_amount' => rand(100, 1000000),
+            'amount' => rand(100, 1000000),
             'remarks' => '',
             // UserSeederに登録している上限
             'user_id' => rand(1,3),

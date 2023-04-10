@@ -68,8 +68,9 @@ class IncomeController extends Controller
         return response()->json($income);
     }
 
-    public function update(IncomeUpdateRequest $request, Income $income)
+    public function update(IncomeUpdateRequest $request, $id)
     {
+        $income = Income::findOrFail($id);
 
         try {
             $income->fill([
@@ -83,6 +84,15 @@ class IncomeController extends Controller
         }
 
         return response()->json($income);
+    }
+
+    public function destroy($id)
+    {
+        $income = Income::findOrFail($id);
+
+        $income->delete();
+
+        return $income;
     }
 
 }

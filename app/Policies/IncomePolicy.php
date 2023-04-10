@@ -2,13 +2,19 @@
 
 namespace App\Policies;
 
+<<<<<<< HEAD
 use App\Models\Income;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+=======
+use App\Models\User;
+use App\Models\Income;
+>>>>>>> ef759ebb57bb168b30608b391d0852e6d4ae3885
 
 class IncomePolicy
 {
     /**
+<<<<<<< HEAD
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user)
@@ -18,11 +24,19 @@ class IncomePolicy
 
     /**
      * Determine whether the user can view the model.
+=======
+     * Determine whether the user can view the post.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Income  $income
+     * @return mixed
+>>>>>>> ef759ebb57bb168b30608b391d0852e6d4ae3885
      */
     public function view(User $user, Income $income)
     {
         return $user->id === $income->user_id;
     }
+<<<<<<< HEAD
 
     /**
      * Determine whether the user can create models.
@@ -64,3 +78,6 @@ class IncomePolicy
         //
     }
 }
+=======
+}
+>>>>>>> ef759ebb57bb168b30608b391d0852e6d4ae3885

@@ -7,6 +7,7 @@ use App\Models\Income;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\IncomeCreateRequest;
+use App\Http\Requests\IncomeUpdateRequest;
 
 class IncomeController extends Controller
 {
@@ -48,6 +49,26 @@ class IncomeController extends Controller
                 'user_id' => Auth::id(),
                 'income_categories_id' => $request->income_categories_id,
             ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($income);
+    }
+
+
+
+    public function update(IncomeUpdateRequest $request, $id)
+    {
+        $income = Income::findOrFail($id);
+
+        try {
+            $income->fill([
+                'amount' => $request->amount,
+                'remarks' => $request->remarks,
+                'user_id' => Auth::id(),
+                'income_categories_id' => $request->income_categories_id,
+            ])->save();
         } catch (\Exception $e) {
             $e->getMessage();
         }

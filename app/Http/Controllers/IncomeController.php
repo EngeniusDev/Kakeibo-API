@@ -67,4 +67,22 @@ class IncomeController extends Controller
 
         return response()->json($income);
     }
+
+    public function update(IncomeUpdateRequest $request, Income $income)
+    {
+
+        try {
+            $income->fill([
+                'amount' => $request->amount,
+                'remarks' => $request->remarks,
+                'user_id' => Auth::id(),
+                'income_categories_id' => $request->income_categories_id,
+            ])->save();
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($income);
+    }
+
 }

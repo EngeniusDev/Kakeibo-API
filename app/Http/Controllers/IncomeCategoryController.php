@@ -46,4 +46,20 @@ class IncomeCategoryController extends Controller
 
         return response()->json($category);
     }
+
+    public function update(IncomeCategoryUpdateRequest $request, $id)
+    {
+        $income = Income::findOrFail($id);
+
+        try {
+            $income->fill([
+                'user_id' => Auth::user()->id,
+                'category_name' => $request->category_name,
+            ])->save();                     
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($income);
+    }
 }

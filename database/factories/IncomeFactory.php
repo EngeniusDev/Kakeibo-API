@@ -23,6 +23,7 @@ class IncomeFactory extends Factory
             'user_id' => rand(1,3),
             // 上記同様
             'income_categories_id' => rand(1,6),
+            'date' => date('Y-m-d'),
             'created_at' => date('Y-m-d H:i:s'),
         ];
     }

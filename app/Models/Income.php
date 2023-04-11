@@ -19,6 +19,15 @@ class Income extends Model
         'remarks',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
     // UserModelのリレーション
     public function user()
     {

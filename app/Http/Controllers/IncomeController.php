@@ -48,6 +48,7 @@ class IncomeController extends Controller
                 'remarks' => $request->remarks,
                 'user_id' => Auth::id(),
                 'income_categories_id' => $request->income_categories_id,
+                'date' => $request->date,
             ]);
         } catch (\Exception $e) {
             $e->getMessage();
@@ -66,11 +67,21 @@ class IncomeController extends Controller
                 'remarks' => $request->remarks,
                 'user_id' => Auth::id(),
                 'income_categories_id' => $request->income_categories_id,
-            ])->save();
+                'date' => $request->date,
+            ])->save();                     
         } catch (\Exception $e) {
             $e->getMessage();
         }
 
         return response()->json($income);
+    }
+
+    public function destroy($id)
+    {
+        $income = Income::findOrFail($id);
+
+        $income->delete();
+
+        return $income;
     }
 }

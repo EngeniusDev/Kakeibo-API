@@ -63,4 +63,13 @@ class IncomeCategoryController extends Controller
 
         return response()->json($income_category);
     }
+
+    public function destroy($id)
+    {
+        $income_category = IncomeCategory::findOrFail($id);
+
+        $income_category->delete();
+
+        return $income_category;
+    }
 }

@@ -11,7 +11,8 @@ class IncomeCategoryController extends Controller
     public function index()
     {
         // デフォルトのカテゴリー
-        $income_categories = IncomeCategory::all();
+        $income_categories = IncomeCategory::whereNull('user_id')->get();
+
         // ユーザーが作成したカテゴリー
         $user_income_categories = IncomeCategory::where('user_id', Auth::user()->id)->get();
 
@@ -20,5 +21,4 @@ class IncomeCategoryController extends Controller
             'user_income_categories' => $user_income_categories
         ]);
     }
-    
 }

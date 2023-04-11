@@ -21,4 +21,14 @@ class IncomeCategoryController extends Controller
             'user_income_categories' => $user_income_categories
         ]);
     }
+
+    public function show($id)
+    {   
+        $income_category = IncomeCategory::findOrFail($id);
+
+        return response()->json([
+            'income_category' => $income_category
+        ]);
+
+    }
 }

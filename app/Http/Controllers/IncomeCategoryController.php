@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\IncomeCategoryCreateRequest;
+use App\Http\Requests\IncomeCategoryUpdateRequest;
 
 class IncomeCategoryController extends Controller
 {
@@ -36,7 +37,7 @@ class IncomeCategoryController extends Controller
     public function store(IncomeCategoryCreateRequest $request)
     {
         try {
-            $category = IncomeCategory::create([
+            $income_category = IncomeCategory::create([
                 'user_id' => Auth::user()->id,
                 'category_name' => $request->category_name,
             ]);
@@ -44,15 +45,15 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($category);
+        return response()->json($income_category);
     }
 
     public function update(IncomeCategoryUpdateRequest $request, $id)
     {
-        $income = Income::findOrFail($id);
+        $income_category = IncomeCategory::findOrFail($id);
 
         try {
-            $income->fill([
+            $income_category->fill([
                 'user_id' => Auth::user()->id,
                 'category_name' => $request->category_name,
             ])->save();                     
@@ -60,6 +61,6 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($income);
+        return response()->json($income_category);
     }
 }

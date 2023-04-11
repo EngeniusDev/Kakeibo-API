@@ -24,4 +24,17 @@ class SpentController extends Controller
             'totalAmount' => $totalAmount
         ]);
     }
+
+    public function show($id)
+    {
+        $spent = Spent::findOrFail($id);
+
+        // App\Policies\IncomePolicy
+        $this->authorize('view', $spent);
+
+        return response()->json([
+            'income' => $spent
+        ]);
+    }
+
 }

@@ -17,12 +17,13 @@ class IncomeFactory extends Factory
     public function definition(): array
     {
         return [
-            'income_amount' => rand(100, 1000000),
+            'amount' => rand(100, 1000000),
             'remarks' => '',
             // UserSeederに登録している上限
             'user_id' => rand(1,3),
             // 上記同様
             'income_categories_id' => rand(1,6),
+            'date' => date('Y-m-d'),
             'created_at' => date('Y-m-d H:i:s'),
         ];
     }

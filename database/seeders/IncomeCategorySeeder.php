@@ -15,31 +15,31 @@ class IncomeCategorySeeder extends Seeder
     {
         DB::table('income_categories')->insert([
         [
-            'category_name' => '給料',
+            'name' => '給料',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => 'お小遣い',
+            'name' => 'お小遣い',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => '賞与',
+            'name' => '賞与',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => '副業',
+            'name' => '副業',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => '投資',
+            'name' => '投資',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => '臨時収入',
+            'name' => '臨時収入',
             'created_at' => date('Y-m-d H:i:s'),
         ],
         [
-            'category_name' => 'その他',
+            'name' => 'その他',
             'created_at' => date('Y-m-d H:i:s'),
         ],
     ]);

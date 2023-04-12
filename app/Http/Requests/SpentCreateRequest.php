@@ -26,6 +26,7 @@ class SpentCreateRequest extends FormRequest
             'remarks' => ['nullable', 'max:50'],
             'user_id' => ['required', 'exists:App\Models\User,id'],
             'spent_categories_id' => ['required', 'exists:App\Models\SpentCategory,id'],
+            'date' =>['required','date_format:Y-m-d H:i:s']
         ];
     }
 
@@ -40,6 +41,7 @@ class SpentCreateRequest extends FormRequest
             'remarks' => '備考',
             'user_id' => 'id',
             'spent_categories_id' => 'id',
+            'date' => '日付'
         ];
     }
 }

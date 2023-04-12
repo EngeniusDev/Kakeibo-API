@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\IncomeCategoryCreateRequest;
 
 class IncomeCategoryController extends Controller
 {
@@ -30,5 +31,19 @@ class IncomeCategoryController extends Controller
             'income_category' => $income_category
         ]);
 
+    }
+
+    public function store(IncomeCategoryCreateRequest $request)
+    {
+        try {
+            $category = IncomeCategory::create([
+                'user_id' => Auth::user()->id,
+                'category_name' => $request->category_name,
+            ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($category);
     }
 }

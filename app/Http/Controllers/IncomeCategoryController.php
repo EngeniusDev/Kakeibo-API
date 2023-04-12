@@ -31,7 +31,6 @@ class IncomeCategoryController extends Controller
         return response()->json([
             'incomeCategory' => $incomeCategory
         ]);
-
     }
 
     public function store(IncomeCategoryCreateRequest $request)

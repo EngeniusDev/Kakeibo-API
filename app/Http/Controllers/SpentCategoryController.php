@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SpentCategory;
-    use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SpentCategoryCreateRequest;
+
 
 class SpentCategoryController extends Controller
 {
@@ -29,5 +31,19 @@ class SpentCategoryController extends Controller
         return response()->json([
             'spentCategory' => $spentCategory
         ]);
+    }
+
+    public function store(SpentCategoryCreateRequest $request)
+    {
+        try {
+            $spentCategory = SpentCategory::create([
+                'user_id' => Auth::user()->id,
+                'name' => $request->name,
+            ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($spentCategory);
     }
 }

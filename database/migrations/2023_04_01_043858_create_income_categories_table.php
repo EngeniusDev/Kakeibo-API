@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('income_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('category_name')->comment('カテゴリー名');
             $table->timestamps();
         });

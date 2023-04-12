@@ -3,8 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IncomeController;
-use App\Http\Controllers\SpentController;
 use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\SpentController;
+use App\Http\Controllers\SpentCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +36,9 @@ Route::middleware('auth')->group(function () {
 Route::prefix('api')->group(function() {
     Route::resource('income', IncomeController::class);
     Route::resource('income_category', IncomeCategoryController::class);
+    Route::resource('spent', SpentController::class);
+    Route::resource('spent_category', SpentCategoryController::class);
   });
 
-Route::prefix('api')->group(function() {
-    Route::resource('spent', SpentController::class);
-});
 
 require __DIR__.'/auth.php';

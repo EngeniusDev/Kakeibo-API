@@ -15,67 +15,67 @@ class SpentCategorySeeder extends Seeder
     {
         DB::table('spent_categories')->insert([
             [
-                'category_name' => '食費',
+                'name' => '食費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '日用品',
+                'name' => '日用品',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '衣服',
+                'name' => '衣服',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '美容',
+                'name' => '美容',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '交通費',
+                'name' => '交通費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '医療費',
+                'name' => '医療費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '教育費',
+                'name' => '教育費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '光熱費',
+                'name' => '光熱費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '交通費',
+                'name' => '交通費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '通信費',
+                'name' => '通信費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '住居費',
+                'name' => '住居費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '定期',
+                'name' => '定期',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '交際費',
+                'name' => '交際費',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => 'タバコ',
+                'name' => 'タバコ',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => '日用品',
+                'name' => '日用品',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'category_name' => 'その他',
+                'name' => 'その他',
                 'created_at' => date('Y-m-d H:i:s'),
             ],
         ]);

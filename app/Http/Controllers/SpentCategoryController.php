@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\IncomeCategory;
+use App\Models\SpentCategory;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\IncomeCategoryCreateRequest;
-use App\Http\Requests\IncomeCategoryUpdateRequest;
+use App\Http\Requests\SpentCategoryCreateRequest;
+use App\Http\Requests\SpentCategoryUpdateRequest;
 
-class IncomeCategoryController extends Controller
+
+class SpentCategoryController extends Controller
 {
     public function index()
     {
         // デフォルトのカテゴリー
-        $defaultCategory = IncomeCategory::whereNull('user_id')->get();
+        $defaultCategory = SpentCategory::whereNull('user_id')->get();
 
         // ユーザーが追加したカテゴリー
-        $addCategory = IncomeCategory::where('user_id', Auth::user()->id)->get();
+        $addCategory = SpentCategory::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
             'defaultCategory' => $defaultCategory,
@@ -26,17 +27,17 @@ class IncomeCategoryController extends Controller
 
     public function show($id)
     {   
-        $incomeCategory = IncomeCategory::findOrFail($id);
+        $spentCategory = SpentCategory::findOrFail($id);
 
         return response()->json([
-            'incomeCategory' => $incomeCategory
+            'spentCategory' => $spentCategory
         ]);
     }
 
-    public function store(IncomeCategoryCreateRequest $request)
+    public function store(SpentCategoryCreateRequest $request)
     {
         try {
-            $incomeCategory = IncomeCategory::create([
+            $spentCategory = SpentCategory::create([
                 'user_id' => Auth::user()->id,
                 'name' => $request->name,
             ]);
@@ -44,15 +45,15 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($incomeCategory);
+        return response()->json($spentCategory);
     }
 
-    public function update(IncomeCategoryUpdateRequest $request, $id)
+    public function update(SpentCategoryUpdateRequest $request, $id)
     {
-        $incomeCategory = IncomeCategory::findOrFail($id);
+        $spentCategory = SpentCategory::findOrFail($id);
 
         try {
-            $incomeCategory->fill([
+            $spentCategory->fill([
                 'user_id' => Auth::user()->id,
                 'name' => $request->name,
             ])->save();                     
@@ -60,15 +61,15 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($incomeCategory);
+        return response()->json($spentCategory);
     }
 
     public function destroy($id)
     {
-        $incomeCategory = IncomeCategory::findOrFail($id);
+        $spentCategory = SpentCategory::findOrFail($id);
 
-        $incomeCategory->delete();
+        $spentCategory->delete();
 
-        return $incomeCategory;
+        return $spentCategory;
     }
 }

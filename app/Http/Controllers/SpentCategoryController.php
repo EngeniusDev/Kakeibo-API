@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SpentCategory;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SpentCategoryCreateRequest;
+use App\Http\Requests\SpentCategoryUpdateRequest;
 
 
 class SpentCategoryController extends Controller
@@ -40,6 +41,22 @@ class SpentCategoryController extends Controller
                 'user_id' => Auth::user()->id,
                 'name' => $request->name,
             ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($spentCategory);
+    }
+
+    public function update(SpentCategoryUpdateRequest $request, $id)
+    {
+        $spentCategory = SpentCategory::findOrFail($id);
+
+        try {
+            $spentCategory->fill([
+                'user_id' => Auth::user()->id,
+                'name' => $request->name,
+            ])->save();                     
         } catch (\Exception $e) {
             $e->getMessage();
         }

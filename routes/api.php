@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\IncomeCategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/hello', function () {
     return 'Hello Vue.js';
 });
+
+
+Route::resource('income_category', IncomeCategoryController::class);

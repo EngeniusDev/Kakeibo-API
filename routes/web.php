@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\SpentController;
+use App\Http\Controllers\IncomeCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('api')->group(function() {
     Route::resource('income', IncomeController::class);
+    Route::resource('income_category', IncomeCategoryController::class);
   });
 
 Route::prefix('api')->group(function() {

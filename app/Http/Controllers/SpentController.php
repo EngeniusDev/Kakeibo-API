@@ -54,4 +54,22 @@ class SpentController extends Controller
         return response()->json($spent);
     }
 
+    public function update(SpentUpdateRequest $request, $id)
+    {
+        $spent = Spent::findOrFail($id);
+
+        try {
+            $spent->fill([
+                'amount' => $request->amount,
+                'remarks' => $request->remarks,
+                'user_id' => Auth::id(),
+                'spent_categories_id' => $request->spent_categories_id,
+            ])->save();                     
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($spent);
+    }
+
 }

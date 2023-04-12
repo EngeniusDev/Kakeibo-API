@@ -72,4 +72,12 @@ class SpentController extends Controller
         return response()->json($spent);
     }
 
+    public function destroy($id)
+    {
+        $spent = Spent::findOrFail($id);
+
+        $spent->delete();
+
+        return $spent;
+    }
 }

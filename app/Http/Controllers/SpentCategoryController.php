@@ -63,4 +63,13 @@ class SpentCategoryController extends Controller
 
         return response()->json($spentCategory);
     }
+
+    public function destroy($id)
+    {
+        $spentCategory = SpentCategory::findOrFail($id);
+
+        $spentCategory->delete();
+
+        return $spentCategory;
+    }
 }

@@ -13,23 +13,23 @@ class IncomeCategoryController extends Controller
     public function index()
     {
         // デフォルトのカテゴリー
-        $income_categories = IncomeCategory::whereNull('user_id')->get();
+        $defaultCategory = IncomeCategory::whereNull('user_id')->get();
 
-        // ユーザーが作成したカテゴリー
-        $user_income_categories = IncomeCategory::where('user_id', Auth::user()->id)->get();
+        // ユーザーが追加したカテゴリー
+        $addCategory = IncomeCategory::where('user_id', Auth::user()->id)->get();
 
         return response()->json([
-            'income_categories' => $income_categories,
-            'user_income_categories' => $user_income_categories
+            'defaultCategory' => $defaultCategory,
+            'addCategory' => $addCategory
         ]);
     }
 
     public function show($id)
     {   
-        $income_category = IncomeCategory::findOrFail($id);
+        $incomeCategory = IncomeCategory::findOrFail($id);
 
         return response()->json([
-            'income_category' => $income_category
+            'incomeCategory' => $incomeCategory
         ]);
 
     }
@@ -37,7 +37,7 @@ class IncomeCategoryController extends Controller
     public function store(IncomeCategoryCreateRequest $request)
     {
         try {
-            $income_category = IncomeCategory::create([
+            $incomeCategory = IncomeCategory::create([
                 'user_id' => Auth::user()->id,
                 'category_name' => $request->category_name,
             ]);
@@ -45,15 +45,15 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($income_category);
+        return response()->json($incomeCategory);
     }
 
     public function update(IncomeCategoryUpdateRequest $request, $id)
     {
-        $income_category = IncomeCategory::findOrFail($id);
+        $incomeCategory = IncomeCategory::findOrFail($id);
 
         try {
-            $income_category->fill([
+            $incomeCategory->fill([
                 'user_id' => Auth::user()->id,
                 'category_name' => $request->category_name,
             ])->save();                     
@@ -61,15 +61,15 @@ class IncomeCategoryController extends Controller
             $e->getMessage();
         }
 
-        return response()->json($income_category);
+        return response()->json($incomeCategory);
     }
 
     public function destroy($id)
     {
-        $income_category = IncomeCategory::findOrFail($id);
+        $incomeCategory = IncomeCategory::findOrFail($id);
 
-        $income_category->delete();
+        $incomeCategory->delete();
 
-        return $income_category;
+        return $incomeCategory;
     }
 }

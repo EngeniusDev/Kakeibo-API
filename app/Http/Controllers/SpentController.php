@@ -46,6 +46,7 @@ class SpentController extends Controller
                 'remarks' => $request->remarks,
                 'user_id' => Auth::id(),
                 'spent_categories_id' => $request->spent_categories_id,
+                'date' => $request->date,
             ]);
         } catch (\Exception $e) {
             $e->getMessage();
@@ -64,6 +65,7 @@ class SpentController extends Controller
                 'remarks' => $request->remarks,
                 'user_id' => Auth::id(),
                 'spent_categories_id' => $request->spent_categories_id,
+                'date' => $request->date,
             ])->save();                     
         } catch (\Exception $e) {
             $e->getMessage();

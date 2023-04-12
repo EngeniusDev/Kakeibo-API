@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Spent;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SpentCreateRequest;
 
 class SpentController extends Controller
 {
@@ -14,13 +15,13 @@ class SpentController extends Controller
 
         $totalAmount = 0;
 
-        // 取得したincomes（収入金額）を足す
+        // spents（収入金額）を足す
         foreach($spents as $spent){
             $totalAmount += $spent->amount;
         }
 
         return response()->json([
-            'incomes' => $spents,
+            'spents' => $spents,
             'totalAmount' => $totalAmount
         ]);
     }
@@ -29,12 +30,28 @@ class SpentController extends Controller
     {
         $spent = Spent::findOrFail($id);
 
-        // App\Policies\IncomePolicy
+        // App\Policies\SpentPolicy
         $this->authorize('view', $spent);
 
         return response()->json([
-            'income' => $spent
+            'spent' => $spent
         ]);
+    }
+
+    public function store(SpentCreateRequest $request)
+    {
+        try {
+            $spent = Spent::create([
+                'amount' => $request->amount,
+                'remarks' => $request->remarks,
+                'user_id' => Auth::id(),
+                'spent_categories_id' => $request->spent_categories_id,
+            ]);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
+        return response()->json($spent);
     }
 
 }

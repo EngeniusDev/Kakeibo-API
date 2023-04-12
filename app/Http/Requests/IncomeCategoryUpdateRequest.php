@@ -23,7 +23,7 @@ class IncomeCategoryUpdateRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'exists:App\Models\User,id'],
-            'category_name' => ['required', 'max:10'],
+            'name' => ['required', 'max:10'],
         ];
     }
 
@@ -35,7 +35,7 @@ class IncomeCategoryUpdateRequest extends FormRequest
     {
         return [
             'user_id' => 'ID',
-            'category_name' => 'カテゴリー名',
+            'name' => 'カテゴリー名',
         ];
     }
 }

@@ -21,4 +21,13 @@ class SpentCategoryController extends Controller
             'addCategory' => $addCategory
         ]);
     }
+
+    public function show($id)
+    {   
+        $spentCategory = SpentCategory::findOrFail($id);
+
+        return response()->json([
+            'spentCategory' => $spentCategory
+        ]);
+    }
 }

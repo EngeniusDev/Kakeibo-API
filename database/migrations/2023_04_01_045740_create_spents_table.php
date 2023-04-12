@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('remarks')->comment('備考');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('spent_categories_id')->constrained('spent_categories')->onDelete('cascade');
+            $table->timestamp('date')->comment('日付');
             $table->timestamps();
         });
     }

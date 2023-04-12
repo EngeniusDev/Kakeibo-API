@@ -39,7 +39,7 @@ class IncomeCategoryController extends Controller
         try {
             $incomeCategory = IncomeCategory::create([
                 'user_id' => Auth::user()->id,
-                'name' => $request->name,
+                'category_name' => $request->category_name,
             ]);
         } catch (\Exception $e) {
             $e->getMessage();
@@ -55,7 +55,7 @@ class IncomeCategoryController extends Controller
         try {
             $incomeCategory->fill([
                 'user_id' => Auth::user()->id,
-                'name' => $request->name,
+                'category_name' => $request->category_name,
             ])->save();                     
         } catch (\Exception $e) {
             $e->getMessage();

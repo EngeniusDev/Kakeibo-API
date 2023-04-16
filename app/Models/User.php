@@ -47,4 +47,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Income');
     }
+
+    // １対多 リレーション
+    public function spents()
+    {
+        return $this->hasMany('App\Models\Spent');
+    }
 }
